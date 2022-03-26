@@ -10,5 +10,4 @@ public class QsProsjektApplication {
 		SpringApplication.run(QsProsjektApplication.class, args);
 		System.out.println("Hello World");
 	}
-
 }

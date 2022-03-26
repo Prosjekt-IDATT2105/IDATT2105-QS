@@ -15,11 +15,11 @@
       label="Password"
       type="password"
     />
-    <base-button id="btnSubmit" class="button" @click="handleClickSignin">Login</base-button>
+    <base-button id="btnSubmit" class="button">Login</base-button>
   </div>
 </template>
 <script>
-import BaseInput from "@/components/BaseInput";
+import BaseInput from "@/components/BaseInput.vue";
 import BaseButton from "@/components/BaseButton.vue";
 export default {
   name: "LoginPage",
@@ -56,8 +56,8 @@ export default {
   margin-bottom: 20px;
 }
 
-#username,
-#password {
+#inpUsername,
+#inpPassword {
   display: flex;
   flex-direction: row;
   align-items: center;

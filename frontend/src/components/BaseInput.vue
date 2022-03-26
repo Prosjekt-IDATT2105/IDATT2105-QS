@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import SetupFormComponent from "@/features/SetupFormComponent";
-import UniqueID from "@/features/UniqueID";
+import SetupFormComponent from "@/features/SetupFormComponent.js";
+import UniqueID from "@/features/UniqueID.js";
 export default {
   props: {
     label: {

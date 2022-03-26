@@ -1,6 +1,6 @@
 <template>
   <div id="loginContainer" @submit.prevent="handleClickSignin">
-    <BaseInput
+    <base-input
       id="inpUsername"
       class="input"
       v-model="event.username"
@@ -8,25 +8,21 @@
       type="text"
     />
 
-    <BaseInput
+    <base-input
       id="inpPassword"
       class="input"
       v-model="event.password"
       label="Password"
       type="password"
     />
-
-    <BaseButton id="btnSubmit" class="button" @click="handleClickSignin">
-      Login
-    </BaseButton>
+    <base-button id="btnSubmit" class="button" @click="handleClickSignin">Login</base-button>
   </div>
 </template>
 <script>
 import BaseInput from "@/components/BaseInput";
-import BaseButton from "@/components/BaseButton.vue"
-import { doLogin } from "../utils/apiutil";
+import BaseButton from "@/components/BaseButton.vue";
 export default {
-  name: "LoginInfo",
+  name: "LoginPage",
   components: {
     BaseInput,
     BaseButton,
@@ -43,18 +39,7 @@ export default {
     };
   },
   methods: {
-    async handleClickSignin() {
-      //alert("You entered, username: " + this.event.username);
-      const loginRequest = {
-        username: this.event.username,
-        password: this.event.password,
-      };
-      const LoginResponse = await doLogin(loginRequest);
-      if (LoginResponse.loginStatus == "Success") {
-        this.$store.commit("set_login_username", loginRequest.username);
-        this.$router.push("/homepage");
-      } else this.loginFailed = true;
-    },
+    
   },
 };
 </script>

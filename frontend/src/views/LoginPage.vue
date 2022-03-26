@@ -1,6 +1,6 @@
 <template>
-  <div id="loginContainer" @submit.prevent="handleClickSignin">
-    <base-input
+  <div class="loginContainer" @submit.prevent="handleClickSignin">
+    <BaseInput
       id="inpUsername"
       class="input"
       v-model="event.username"
@@ -8,24 +8,22 @@
       type="text"
     />
 
-    <base-input
+    <BaseInput
       id="inpPassword"
       class="input"
       v-model="event.password"
       label="Password"
       type="password"
     />
-    <base-button id="btnSubmit" class="button">Login</base-button>
+    <button id="btnSubmit" class="button">Login</button>
   </div>
 </template>
 <script>
 import BaseInput from "@/components/BaseInput.vue";
-import BaseButton from "@/components/BaseButton.vue";
 export default {
   name: "LoginPage",
   components: {
     BaseInput,
-    BaseButton,
   },
   data() {
     return {
@@ -37,9 +35,6 @@ export default {
       loginFailed: false,
       loginStatus: "",
     };
-  },
-  methods: {
-    
   },
 };
 </script>
@@ -56,8 +51,8 @@ export default {
   margin-bottom: 20px;
 }
 
-#inpUsername,
-#inpPassword {
+#username,
+#password {
   display: flex;
   flex-direction: row;
   align-items: center;

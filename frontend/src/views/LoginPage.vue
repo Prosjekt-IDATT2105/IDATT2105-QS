@@ -40,7 +40,9 @@ export default {
   },
   methods: {
     async handleClickSignin() {
+
       const loginRequest = { username: this.username, password: this.password };
+
       const loginResponse = await doLogin(loginRequest);
       if (loginResponse == "Wrong password") {
         alert(loginResponse);

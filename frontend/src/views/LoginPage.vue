@@ -1,5 +1,5 @@
 <template>
-    <div :class="container">
+    <div class="container" @submit.prevent="handleClickSignin">
         <h2 id="title">LOGIN</h2>
         <BaseInput
             id="inpUsername"
@@ -13,13 +13,15 @@
             label="Password"
             type="password"
         />
-        <button id="btnSubmit" class="button">
+        <button id="btnSubmit" class="button" @click="handleClickSignin">
             Login
         </button>
     </div>
 </template>
 <script>
 import BaseInput from "@/components/BaseInput.vue";
+import {doLogin} from "@/utils/apiutil";
+
 export default {
   name: "LoginPage",
   components: {
@@ -42,18 +44,21 @@ export default {
       const loginResponse = await doLogin(loginRequest);
       if (loginResponse == "Wrong password") {
         alert(loginResponse);
+        alert("funnet")
       } else if (loginResponse == "User not found") {
+        alert("ikke funnet")
         this.showSignUpButton = true;
         document.getElementById("logInHeader").innerHTML = loginResponse;
       } else {
         this.$store.commit("SET_TOKEN", loginResponse);
         this.$store.commit("SET_USERNAME", this.username);
+        alert("siste else-setning")
       }
     },
   }
 };
 </script>
-<style lang="scss" scoped>
+<style scoped>
 .container {
   display: grid;
   justify-content: center;

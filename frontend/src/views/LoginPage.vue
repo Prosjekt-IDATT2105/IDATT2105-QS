@@ -1,29 +1,29 @@
 <template>
-  <div class="loginContainer" @submit.prevent="handleClickSignin">
-    <BaseInput
-      id="inpUsername"
-      class="input"
-      v-model="event.username"
-      label="Username"
-      type="text"
-    />
-
-    <BaseInput
-      id="inpPassword"
-      class="input"
-      v-model="event.password"
-      label="Password"
-      type="password"
-    />
-    <button id="btnSubmit" class="button">Login</button>
-  </div>
+    <div :class="container">
+        <h2 id="title">LOGIN</h2>
+        <BaseInput
+            id="inpUsername"
+            v-model="event.username"
+            label="Username"
+            type="text"
+        />
+        <BaseInput
+            id="inpPassword"
+            v-model="event.password"
+            label="Password"
+            type="password"
+        />
+        <button id="btnSubmit" class="button">
+            Login
+        </button>
+    </div>
 </template>
 <script>
 import BaseInput from "@/components/BaseInput.vue";
 export default {
   name: "LoginPage",
   components: {
-    BaseInput,
+    BaseInput
   },
   data() {
     return {
@@ -36,23 +36,37 @@ export default {
       loginStatus: "",
     };
   },
+  methods: {
+    async handleClickSignin() {
+      const loginRequest = { username: this.username, password: this.password };
+      const loginResponse = await doLogin(loginRequest);
+      if (loginResponse == "Wrong password") {
+        alert(loginResponse);
+      } else if (loginResponse == "User not found") {
+        this.showSignUpButton = true;
+        document.getElementById("logInHeader").innerHTML = loginResponse;
+      } else {
+        this.$store.commit("SET_TOKEN", loginResponse);
+        this.$store.commit("SET_USERNAME", this.username);
+      }
+    },
+  }
 };
 </script>
-<style scoped>
-#loginContainer {
+<style lang="scss" scoped>
+.container {
   display: grid;
   justify-content: center;
   margin: 40px;
 }
-
-#loginTitle {
+#title {
   font-size: x-large;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
-#username,
-#password {
+#inpUsername,
+#inpPassword {
   display: flex;
   flex-direction: row;
   align-items: center;

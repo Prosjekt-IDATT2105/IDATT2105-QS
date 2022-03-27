@@ -1,22 +1,25 @@
 <template>
-  <label v-if="label" :for="uuid">
-    {{ label }}
-  </label>
-  <input
-    class="field"
-    v-bind="{
+  <div class="container">
+    <label v-if="label" :for="uuid">
+      {{ label }}
+    </label>
+    <input
+      class="field"
+      v-bind="{
       ...$attrs,
       onInput: updateValue,
-    }"
-    :value="modelValue"
-    :placeholder="label"
-    :aria-describedby="error ? `${uuid}-error` : null"
-    :aria-invalid="error ? true : false"
-    :class="{ error }"
-  />
-  <div v-if="error">
-    {{ error }}
+      }"
+      :value="modelValue"
+      :placeholder="label"
+      :aria-describedby="error ? `${uuid}-error` : null"
+      :aria-invalid="error ? true : false"
+      :class="{ error }"
+    />
+    <div v-if="error">
+      {{ error }}
+    </div>
   </div>
+  
 </template>
 
 <script>
@@ -48,7 +51,8 @@ export default {
 };
 </script>
 <style scoped>
-div {
-  padding-left: 5px;
+.container {
+  display: block;
+  margin: 10rem;
 }
 </style>
